@@ -1,7 +1,19 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
-function App() {
+let App = () => {
+
+// Functions for search and useState
+
+// Add/Use async function for loading data from the API?
+// We will need to use await for axios get calls
+
+
+//Create JSX objects/form?
+
+// Replace boiler code in "return" section with our code for our news app
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +32,9 @@ function App() {
       </header>
     </div>
   );
+
 }
+
+
 
 export default App;
