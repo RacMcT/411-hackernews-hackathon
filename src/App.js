@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
-
+console.log('chicken')
+axios('http://hn.algolia.com/api/v1/items/1')
+.then(res => {
+  console.log(res.data.author)
+})
 let App = () => {
 
 // Functions for search and useState
@@ -13,23 +17,40 @@ let App = () => {
 //Create JSX objects/form?
 
 // Replace boiler code in "return" section with our code for our news app
-
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <div className="nav-bar">
+          <h3 className="urlTitle"> Hacker News Search</h3>
+          <nav>
+            <span className="navSpan" id="spanBlack">Sort By : </span>
+
+
+
+            {/* TODO:Need methods inside app class/constructor */}
+
+            <span className="navSpan" onClick={this.sortTwentyFour}>Last 24 Hours</span>
+            <span className="navSpan" onClick={this.sortLastWeek}>Last Week</span>
+            <span className="navSpan" onClick={this.sortLastMonth}>Last Month</span>
+            <form onSubmit={this.handleSubmit}>
+              <input className="navInput" type="text" id="searchTerm" placeholder="Search Hacker News"/>
+              <input type="submit" value="Submit"/>
+            </form>
+            
+
+
+
+            
+          </nav>
+        </div>
       </header>
+
+
+
+
+
+      <footer></footer>
     </div>
   );
 
