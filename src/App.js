@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
-console.log('chicken')
+// console.log('chicken')
 axios('http://hn.algolia.com/api/v1/items/1')
 .then(res => {
   console.log(res.data.author)
@@ -84,7 +84,7 @@ let [search, setSearch] = useState('');
   );
 
 }
-
+}
 
 
 export default App;
