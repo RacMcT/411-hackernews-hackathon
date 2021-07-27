@@ -10,13 +10,42 @@ let App = () => {
 
 // Functions for search and useState
 
+let [search, setSearch] = useState('');
+
+  useEffect(() => {
+    let element = document.getElementById("123");
+    element.focus();
+  });
+
+  let [news, setNews] = useState({});
+  let [dateArray, setDateArray] = useState([]);
+  let [dateFilter, setDateFilter] = useState('All');
+
+
+  async function loadData(event) {
+    event.preventDefault();
+    let res = await axios.get("http://hn.algolia.com/api/v1/search_by_date?query=" + search);
+    let data = await res.data.hits;
+    let objects = {};
+
+    for (let i = 0; i < data.length; i++) {
+      let createDate = Object.values(data[i])[0];
+      let author = Object.values(data[i])[3];
+      objects[i] = { createDate: createDate, author: author, className: "show" };
+    };
+
+    let dates = [];
+
+    for (let value in objects) {
+      dates.push(objects[value].createDate)
+    };
+
+
 // Add/Use async function for loading data from the API?
 // We will need to use await for axios get calls
 
 
-//Create JSX objects/form?
-
-// Replace boiler code in "return" section with our code for our news app
+//Create UX search functionality for our form-- use JSX objects?
  
   return (
     <div className="App">

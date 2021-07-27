@@ -65,3 +65,11 @@ nav {
 .navInput:focus::placeholder {
   color: transparent;
 }
+
+.hide {
+  display: none; 
+ /* background-color: yellow;  */
+}
+
+.show {
+ display: block;
