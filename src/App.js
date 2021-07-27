@@ -21,6 +21,8 @@ let [search, setSearch] = useState('');
   let [dateArray, setDateArray] = useState([]);
   let [dateFilter, setDateFilter] = useState('All');
 
+  // Add/Use async function for loading data from the API?
+// We will need to use await for axios get calls
 
   async function loadData(event) {
     event.preventDefault();
@@ -41,8 +43,6 @@ let [search, setSearch] = useState('');
     };
 
 
-// Add/Use async function for loading data from the API?
-// We will need to use await for axios get calls
 
 
 //Create UX search functionality for our form-- use JSX objects?
