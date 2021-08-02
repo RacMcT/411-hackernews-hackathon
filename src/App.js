@@ -42,7 +42,64 @@ let [search, setSearch] = useState('');
       dates.push(objects[value].createDate)
     };
 
+    for (let value in objects) {
+      dates.push(objects[value].createDate)
+    };
 
+    let distinctDates = [...new Set([...dates])];
+    distinctDates.sort();
+    distinctDates.unshift('All')
+
+    setNews(objects);
+    setDateArray(distinctDates);
+    let uxSelect = document.getElementById('uxSelect');
+    setDateFilter = "All"
+    uxSelect.value = "All";
+  };
+
+  let setClassName = (date) => {
+    let news2 = { ...news };
+    for (let prop in news2) {
+      let newClass = news2[prop].createDate == date ? 'show' : 'hide';
+      if (date == "All") newClass = "show";
+      news2[prop].className = newClass;
+    };
+    setNews(news2);
+    setDateFilter(date);
+  };
+
+/////////////////////////////
+
+let UxInput = () => {
+  return (<input id="123" type="text" value={search} onChange={e => setSearch(e.target.value)} />)
+}
+
+let UxSearchBtn = () => {
+  return (
+    <button onClick={loadData}>Search News</button>
+  )
+};
+
+let UxSelect = () => {
+  return (
+    <select id="uxSelect" value={dateFilter} onChange={(event) => setClassName(event.target.value)}>
+      {dateArray.map((date, i) =>
+        <option value={date} key={i}>{date}</option>
+      )}
+    </select>
+  )
+};
+
+let UxNews = () => {
+  return (
+    <ul>
+      {Object.keys(news).map((k, index) => (
+        <li key={k} className={news[k].className}>
+          *created={news[k].createDate}*index={index}*key={k}*Author={news[k].author}
+        </li>
+      ))}
+    </ul>)
+};
 
 
 //Create UX search functionality for our form-- use JSX objects?
@@ -54,24 +111,24 @@ let [search, setSearch] = useState('');
           <h3 className="urlTitle"> Hacker News Search</h3>
           <nav>
             <span className="navSpan" id="spanBlack">Sort By : </span>
+          </nav> 
+            <UxInput />
 
+            <UxSearchBtn />
 
+            <UxSelect />
 
-            {/* TODO:Need methods inside app class/constructor */}
-
-            <span className="navSpan" onClick={this.sortTwentyFour}>Last 24 Hours</span>
-            <span className="navSpan" onClick={this.sortLastWeek}>Last Week</span>
-            <span className="navSpan" onClick={this.sortLastMonth}>Last Month</span>
-            <form onSubmit={this.handleSubmit}>
+            <div>
+            <UxNews />
+            </div>
+            
+            {/* <form onSubmit={this.handleSubmit}>
               <input className="navInput" type="text" id="searchTerm" placeholder="Search Hacker News"/>
               <input type="submit" value="Submit"/>
-            </form>
+            </form> */}
             
-
-
-
             
-          </nav>
+        
         </div>
       </header>
 
@@ -84,7 +141,7 @@ let [search, setSearch] = useState('');
   );
 
 }
-}
+
 
 
 export default App;
